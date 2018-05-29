@@ -1,0 +1,44 @@
+opengt
+ set com 115200n81
+ set senddelay 0.02
+ waitquiet 1 0.2
+ flash 0.1
+
+:start
+ send "AT+COPS?^m"
+ waitfor 15 "CHN-CT","CMCC","CHN-UNICOM","ERR"
+ if % = 0 goto chnct
+ if % = 1 goto cmcc
+ if % = 2 goto chnunicom
+ if % = 3 goto error
+
+ print "Timeout dialing\n"
+
+ exit 1
+
+:chnct
+ print "Dial China Telcom\n"
+ send "AT$QCRMCALL=1,1^m"
+ system "echo 0 > /tmp/simcom.lock"
+ exit 0
+
+:cmcc
+ print "Dial China Mobile\n"
+ send "AT$QCRMCALL=1,1,,,,,,\"ctnet@mycdma.cn\",\"vnet.mobi\"^m"
+ system "echo 0 > /tmp/simcom.lock"
+ exit 0
+
+:chnunicom
+ print "Dial China Unicom\n"
+ send "AT$QCRMCALL=1,1^m"
+ system "echo 0 > /tmp/simcom.lock"
+ exit 0
+
+:timeout
+ print "waitfor AT+COPS? timeout"
+ exit 1
+
+:error
+ print "query AT+COPS? error"
+ exit 1
+
