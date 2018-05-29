@@ -71,8 +71,8 @@ clean:
 
 
 comgt: comgt.o
-	cc comgt.o $(LDFLAGS) -o comgt
+	$(CC) comgt.o $(LDFLAGS) -o comgt
 
 comgt.o: comgt.c comgt.h
-	cc comgt.c $(CFLAGS) 
+	$(CC) comgt.c $(CFLAGS) 
 
