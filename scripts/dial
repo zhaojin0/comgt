@@ -17,7 +17,7 @@ opengt
  exit 1
 
 :chnct
- print "Dial China Telcom\n"
+ print "Dial China Telecom\n"
  send "AT$QCRMCALL=1,1^m"
  system "echo 0 > /tmp/simcom.lock"
  exit 0
