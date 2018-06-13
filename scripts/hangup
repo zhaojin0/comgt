@@ -13,15 +13,13 @@ opengt
   if % = 2 goto senderror
 
   print "Timeout dialing AT$QCRMCALL'\n"
-  system "rm /tmp/simcom.lock"
   exit 1
 
 :senderror
- system "rm /tmp/simcom.lock"
- print "Hnagup Error\n"
+ print "send Hnagup error\n"
  exit 1
 
 :continue
- system "rm /tmp/simcom.lock"
+ print "send Huangup finished\n"
  exit 0
 

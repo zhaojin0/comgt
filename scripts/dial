@@ -17,21 +17,18 @@ opengt
  exit 1
 
 :chnct
- print "Dial China Telecom\n"
- send "AT$QCRMCALL=1,1^m"
- system "echo 0 > /tmp/simcom.lock"
+ print "send China Telecom dial command\n"
+ send "AT$QCRMCALL=1,1,,,,,,\"ctnet@mycdma.cn\",\"vnet.mobi\"^m"
  exit 0
 
 :cmcc
- print "Dial China Mobile\n"
- send "AT$QCRMCALL=1,1,,,,,,\"ctnet@mycdma.cn\",\"vnet.mobi\"^m"
- system "echo 0 > /tmp/simcom.lock"
+ print "send China Mobile dial command\n"
+ send "AT$QCRMCALL=1,1^m"
  exit 0
 
 :chnunicom
- print "Dial China Unicom\n"
+ print "send China Unicom dial command\n"
  send "AT$QCRMCALL=1,1^m"
- system "echo 0 > /tmp/simcom.lock"
  exit 0
 
 :timeout
